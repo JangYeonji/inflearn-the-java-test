@@ -6,6 +6,7 @@ import java.lang.reflect.Executable;
 import java.time.Duration;
 import java.util.function.Supplier;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -13,13 +14,17 @@ class StudyTest {
     @Test
     @DisplayName("스터디 만들기")
     void create_new_study() {
-        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
-            new Study(10);
-            Thread.sleep(300);
-        });
-        //TODO ThreadLocal
-        //ThreadLocal을 사용하는 경우에는 테스트가 제대로 적용되지 않을 수 있음
-        //assertTimeoutPreemptively는 Thread와 관련 없을 때 쓰기
+        //Junit 아님
+        Study actual = new Study(10);
+        assertThat(actual.getLimit()).isGreaterThan(0);
+
+//        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
+//            new Study(10);
+//            Thread.sleep(300);
+//        });
+//        //TODO ThreadLocal
+//        //ThreadLocal을 사용하는 경우에는 테스트가 제대로 적용되지 않을 수 있음
+//        //assertTimeoutPreemptively는 Thread와 관련 없을 때 쓰기
 
 
 //        assertTimeout(Duration.ofMillis(100), () -> {
