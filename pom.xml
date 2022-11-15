@@ -38,4 +38,34 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>
+                    true
+                </activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <groups>fast</groups>
+                    </configuration>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>ci</id>
+            <build>
+                <plugins>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <groups>fast | slow</groups>
+                    </configuration>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
